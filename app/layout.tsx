@@ -6,6 +6,7 @@ import MotionProvider from '@/components/MotionProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://munkmedia.vercel.app'),
   title: 'Munk Media - Scale with creators your customers already trust',
   description: 'Full-funnel influencer campaigns, UGC production, and creator management for high-growth brands.',
   keywords: 'influencer marketing, UGC production, creator management, paid social amplification, brand partnerships',
