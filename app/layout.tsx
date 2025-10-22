@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import MotionProvider from '@/components/MotionProvider'
+import MagneticCursor from '@/components/MagneticCursor'
+import ScrollProgress from '@/components/ScrollProgress'
+import SmoothScroll from '@/components/SmoothScroll'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,9 +41,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <MotionProvider>
-          {children}
-        </MotionProvider>
+        <ScrollProgress />
+        <MagneticCursor />
+        <SmoothScroll>
+          <MotionProvider>
+            {children}
+          </MotionProvider>
+        </SmoothScroll>
       </body>
     </html>
   )
