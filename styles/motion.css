@@ -1,0 +1,196 @@
+/**
+ * Motion System CSS Filters and GPU Hints
+ * Optimized for performance and visual effects
+ */
+
+/* GPU Acceleration Hints */
+.parallax-element,
+.fx-card,
+.displacement-container,
+[data-reveal],
+[data-parallax],
+[data-hover] {
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Gooey Filter for Magnetic Cursor */
+.gooey-filter {
+  filter: url(#goo);
+}
+
+/* Smooth transitions for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 3D Card Effects */
+.fx-card {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.fx-card * {
+  transform-style: preserve-3d;
+}
+
+/* Displacement Container */
+.displacement-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.displacement-container img {
+  transition: transform 0.3s ease-out, filter 0.3s ease-out;
+}
+
+/* Reveal Elements */
+[data-reveal] {
+  opacity: 0;
+}
+
+[data-reveal="up"] {
+  transform: translateY(60px);
+}
+
+[data-reveal="down"] {
+  transform: translateY(-60px);
+}
+
+[data-reveal="left"] {
+  transform: translateX(60px);
+}
+
+[data-reveal="right"] {
+  transform: translateX(-60px);
+}
+
+[data-reveal="scale"] {
+  transform: scale(0.8);
+}
+
+/* Hover Effects */
+[data-hover="lift"] {
+  transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+}
+
+[data-hover="glow"] {
+  transition: box-shadow 0.3s ease-out;
+}
+
+[data-hover="scale"] {
+  transition: transform 0.3s ease-out;
+}
+
+[data-hover="rotate"] {
+  transition: transform 0.3s ease-out;
+}
+
+/* Magnetic Elements */
+[data-magnetic] {
+  transition: transform 0.3s ease-out;
+}
+
+/* Kinetic Typography */
+[data-kt] span {
+  display: inline-block;
+  transition: transform 0.1s ease-out;
+}
+
+/* Route Transition Container */
+.route-transition-container {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll Progress */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #52341f, #dcdcdb);
+  transform-origin: left;
+  z-index: 1000;
+}
+
+/* Performance Optimizations */
+.motion-safe * {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* Custom Scrollbar for Smooth Scroll */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #52341f #fef7f2;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: #fef7f2;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #52341f;
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: #3d2517;
+}
+
+/* Focus States for Accessibility */
+[data-magnetic]:focus-visible,
+[data-hover]:focus-visible {
+  outline: 2px solid #52341f;
+  outline-offset: 2px;
+}
+
+/* Loading States */
+.motion-loading {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.motion-loaded {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .fx-card,
+  [data-hover] {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .parallax-element,
+  .fx-card,
+  .displacement-container,
+  [data-reveal],
+  [data-parallax],
+  [data-hover],
+  [data-magnetic] {
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+}
+

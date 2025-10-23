@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import '../styles/motion.css'
 import MotionProvider from '@/components/MotionProvider'
-import MagneticCursor from '@/components/MagneticCursor'
+import MagneticCursorUltra from '@/components/MagneticCursorUltra'
 import ScrollProgress from '@/components/ScrollProgress'
 import SmoothScroll from '@/components/SmoothScroll'
+import RouteTransition from '@/components/RouteTransition'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -42,10 +44,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ScrollProgress />
-        <MagneticCursor />
+        <MagneticCursorUltra />
         <SmoothScroll>
           <MotionProvider>
-            {children}
+            <RouteTransition>
+              {children}
+            </RouteTransition>
           </MotionProvider>
         </SmoothScroll>
       </body>

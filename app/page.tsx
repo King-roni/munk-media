@@ -9,7 +9,12 @@ import CreatorNetwork from '@/components/CreatorNetwork'
 import Testimonials from '@/components/Testimonials'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
+import { useDataMotion } from '@/hooks/useDataMotion'
+
 export default function Home() {
+  // Enable all data-driven motion effects
+  useDataMotion()
+
   return (
     <main className="min-h-screen bg-mm-ivory">
       <Navigation />
