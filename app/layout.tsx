@@ -1,14 +1,42 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Archivo } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import '../styles/motion.css'
 import MotionProvider from '@/components/MotionProvider'
-import MagneticCursorUltra from '@/components/MagneticCursorUltra'
 import ScrollProgress from '@/components/ScrollProgress'
 import SmoothScroll from '@/components/SmoothScroll'
 import RouteTransition from '@/components/RouteTransition'
 
-const inter = Inter({ subsets: ['latin'] })
+// Load Google Fonts (temporarily until brand fonts are added)
+const archivo = Archivo({ 
+  subsets: ['latin'],
+  weight: ['700', '900'],
+  variable: '--font-archivo',
+  display: 'swap',
+})
+
+// Placeholder for DM Sans (to be loaded from Google Fonts later)
+const dmSans = localFont({
+  src: [
+    { path: '../public/fonts/dmsans-regular.woff2', weight: '400', style: 'normal' },
+  ],
+  variable: '--font-dmsans',
+  fallback: ['system-ui', 'sans-serif'],
+})
+
+// Placeholder for brand fonts (Horizon, Tan Mon Cheri)
+const horizon = localFont({
+  src: [{ path: '../public/fonts/horizon.otf', weight: '400' }],
+  variable: '--font-horizon',
+  fallback: ['Archivo Black', 'system-ui', 'sans-serif'],
+})
+
+const tanMonCheri = localFont({
+  src: [{ path: '../public/fonts/tan-mon-cheri.otf', weight: '400' }],
+  variable: '--font-accent',
+  fallback: ['system-ui', 'serif'],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://munkmedia.vercel.app'),
@@ -42,9 +70,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${archivo.variable} ${dmSans.variable} ${horizon.variable} ${tanMonCheri.variable} font-body`}>
         <ScrollProgress />
-        <MagneticCursorUltra />
         <SmoothScroll>
           <MotionProvider>
             <RouteTransition>

@@ -8,22 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Munk Media Brand Colors
-        'mm-ivory': '#fef7f2',
-        'mm-stone': '#dcdcdb',
-        'mm-brown': '#52341f',
-        'mm-ink': '#231f20',
+        // Munk Media Brand Colors (Official Brandbook)
+        'mm-brown': '#52341f',    // Strength & depth
+        'mm-ivory': '#fef7f2',    // Balance & warmth
+        'mm-stone': '#dcdcdb',    // Calm confidence
+        'mm-ink': '#322012',      // Depth & clarity
         // Legacy support (will be phased out)
         luxury: {
-          black: '#231f20', // mm-ink
+          black: '#322012', // mm-ink
           white: '#fef7f2', // mm-ivory
           beige: '#dcdcdb', // mm-stone
           gold: '#52341f', // mm-brown
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Horizon', 'Archivo Black', 'system-ui', 'sans-serif'],
+        body: ['DM Sans', 'system-ui', 'sans-serif'],
+        accent: ['Tan Mon Cheri', 'system-ui', 'serif'],
+        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        display: ['Archivo Black', 'system-ui', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
