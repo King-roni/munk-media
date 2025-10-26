@@ -32,7 +32,7 @@ export default function DisplacementHover({
 
     // Check WebGL capability
     if (canvas && director.canUseAdvanced) {
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl')
+      const gl = canvas.getContext('webgl') as WebGLRenderingContext | null
       if (gl) {
         setUseWebGL(true)
         initWebGLDisplacement(gl, image, canvas)

@@ -11,7 +11,10 @@ import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import { useDataMotion } from '@/hooks/useDataMotion'
 
+console.log('[BOOT] page loading')
+
 export default function Home() {
+  console.log('[BOOT] page ready')
   // Enable all data-driven motion effects
   useDataMotion()
 

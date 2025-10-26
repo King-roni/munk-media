@@ -25,8 +25,8 @@ export default function MagneticCursorUltra() {
     const cursorDot = cursorDotRef.current
     if (!cursor || !cursorDot) return
 
-    let currentScale = motion.cursor.scale.default
-    let targetScale = motion.cursor.scale.default
+      let currentScale = 1
+      let targetScale = 1
 
     // Mouse move handler
     const handleMouseMove = (e: MouseEvent) => {
@@ -37,10 +37,10 @@ export default function MagneticCursorUltra() {
       
       if (target && target !== magneticTarget.current) {
         magneticTarget.current = target
-        targetScale = motion.cursor.scale.hover
+        targetScale = 1.6 // hover scale
       } else if (!target && magneticTarget.current) {
         magneticTarget.current = null
-        targetScale = motion.cursor.scale.default
+        targetScale = 1
       }
 
       // Magnetic pull effect
@@ -69,13 +69,11 @@ export default function MagneticCursorUltra() {
 
     // Mouse down/up handlers
     const handleMouseDown = () => {
-      targetScale = motion.cursor.scale.click
+      targetScale = 0.8 // click scale
     }
 
     const handleMouseUp = () => {
-      targetScale = magneticTarget.current 
-        ? motion.cursor.scale.hover 
-        : motion.cursor.scale.default
+      targetScale = magneticTarget.current ? 1.6 : 1
     }
 
     // Reset magnetic elements

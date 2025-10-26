@@ -31,11 +31,11 @@ export default function Hero() {
             </>
           ) : (
             <>
-              <SplitTextGradient delay={0.3}>Scale</SplitTextGradient>
+              <SplitTextGradient>Scale</SplitTextGradient>
               <br />
-              <SplitText className="text-mm-ink" delay={0.6}>with creators your</SplitText>
+              with creators your
               <br />
-              <SplitText className="text-mm-ink" delay={0.9}>customers already trust</SplitText>
+              customers already trust
             </>
           )}
         </h1>
