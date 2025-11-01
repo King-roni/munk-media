@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useState } from 'react'
+import Link from 'next/link'
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { magneticSettings, springConfigs, shouldReduceMotion } from '@/lib/motionConfig'
 
@@ -75,20 +76,13 @@ export default function MagneticButton({
       whileTap={{ scale: 0.95 }}
       transition={springConfigs.snappy}
     >
-      <motion.div
-        animate={{
-          scale: isHovering ? 1.05 : 1,
-        }}
-        transition={{ duration: 0.3 }}
-      >
-        {children}
-      </motion.div>
+      {children}
     </motion.button>
   )
 }
 
 /**
- * Magnetic Link component
+ * Magnetic Link component - uses Next.js Link
  */
 export function MagneticLink({
   children,
@@ -131,26 +125,30 @@ export function MagneticLink({
 
   if (shouldReduceMotion()) {
     return (
-      <a ref={ref} href={href} className={className}>
+      <Link href={href} className={className}>
         {children}
-      </a>
+      </Link>
     )
   }
 
   return (
-    <motion.a
-      ref={ref}
-      href={href}
-      className={className}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      style={{
-        x: springX,
-        y: springY,
-      }}
-    >
-      {children}
-    </motion.a>
+    <Link href={href} className={className} style={{ display: 'inline-flex' }}>
+      <motion.span
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          x: springX,
+          y: springY,
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '0.5rem',
+          width: '100%',
+        }}
+      >
+        {children}
+      </motion.span>
+    </Link>
   )
 }
 

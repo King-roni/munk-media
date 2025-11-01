@@ -89,7 +89,7 @@ export function checkVoice(text: string): VoiceCheckResult {
   }
 
   // Check for emojis in brand-level copy
-  const emojiRegex = /[\u{1F300}-\u{1F9FF}]/gu
+  const emojiRegex = /[\uD800-\uDBFF][\uDC00-\uDFFF]|[\u2600-\u27FF]|[\u2700-\u27BF]/g
   if (emojiRegex.test(text)) {
     warnings.push("Emojis found - use only in social/community context, not brand-level copy")
   }

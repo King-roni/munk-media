@@ -69,7 +69,9 @@ export default function MotionProvider({ children }: MotionProviderProps) {
         duration: motionConfig.smoothScroll.duration,
         easing: motionConfig.smoothScroll.easing,
         smoothWheel: motionConfig.smoothScroll.smoothWheel,
-        smoothTouch: motionConfig.smoothScroll.smoothTouch,
+        wheelMultiplier: 1.2, // Increase wheel responsiveness
+        touchMultiplier: 2, // Smooth touch on mobile
+        infinite: false,
       })
 
       lenisRef.current = lenis

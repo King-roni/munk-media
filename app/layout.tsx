@@ -1,14 +1,9 @@
 import type { Metadata } from 'next'
-import { Archivo } from 'next/font/google'
-import localFont from 'next/font/local'
+import { Archivo, DM_Sans } from 'next/font/google'
 import './globals.css'
-import '../styles/motion.css'
 import MotionProvider from '@/components/MotionProvider'
 import ScrollProgress from '@/components/ScrollProgress'
-import SmoothScroll from '@/components/SmoothScroll'
-import RouteTransition from '@/components/RouteTransition'
 
-// Load Google Fonts (temporarily until brand fonts are added)
 const archivo = Archivo({ 
   subsets: ['latin'],
   weight: ['700', '900'],
@@ -16,26 +11,11 @@ const archivo = Archivo({
   display: 'swap',
 })
 
-// Placeholder for DM Sans (to be loaded from Google Fonts later)
-const dmSans = localFont({
-  src: [
-    { path: '../public/fonts/dmsans-regular.woff2', weight: '400', style: 'normal' },
-  ],
-  variable: '--font-dmsans',
-  fallback: ['system-ui', 'sans-serif'],
-})
-
-// Placeholder for brand fonts (Horizon, Tan Mon Cheri)
-const horizon = localFont({
-  src: [{ path: '../public/fonts/horizon.otf', weight: '400' }],
-  variable: '--font-horizon',
-  fallback: ['Archivo Black', 'system-ui', 'sans-serif'],
-})
-
-const tanMonCheri = localFont({
-  src: [{ path: '../public/fonts/tan-mon-cheri.otf', weight: '400' }],
-  variable: '--font-accent',
-  fallback: ['system-ui', 'serif'],
+const dmSans = DM_Sans({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-dm-sans',
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -70,15 +50,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${archivo.variable} ${dmSans.variable} ${horizon.variable} ${tanMonCheri.variable} font-body`}>
+      <body className={`${archivo.variable} ${dmSans.variable} bg-mm-ivory text-mm-ink font-body antialiased`}>
         <ScrollProgress />
-        <SmoothScroll>
-          <MotionProvider>
-            <RouteTransition>
-              {children}
-            </RouteTransition>
-          </MotionProvider>
-        </SmoothScroll>
+        <MotionProvider>
+          {children}
+        </MotionProvider>
       </body>
     </html>
   )

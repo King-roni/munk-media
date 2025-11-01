@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { Users, Camera, TrendingUp, Layers, ArrowRight, CheckCircle } from 'lucide-react'
 import { useMotion } from './MotionProvider'
 
@@ -11,69 +12,38 @@ export default function Services() {
     {
       icon: Users,
       title: 'Influencer Campaigns',
-      description: 'End-to-end campaign management with our curated selection of premium influencers.',
+      description: 'End-to-end campaign strategy built around creators who connect with your audience.',
       features: [
-        'Strategic campaign planning',
-        'Influencer vetting & selection',
-        'Content approval & management',
-        'Performance tracking & optimization'
+        'Purpose-driven storytelling',
+        'Authentic creator partnerships',
+        'Campaign design & execution',
+        'Impact measurement & optimization'
       ],
       color: 'from-blue-500 to-cyan-500'
     },
     {
       icon: Camera,
-      title: 'Content Creation',
-      description: 'Professional content production that aligns with your brand aesthetic and values.',
+      title: 'UGC Production',
+      description: 'Human, story-led content created to inspire trust and emotion.',
       features: [
-        'High-quality visual content',
-        'Video production & editing',
-        'Brand-aligned messaging',
-        'Multi-platform optimization'
+        'Real creators, real stories',
+        'Platform-optimized production',
+        'Seamless brand integration',
+        'Measurable engagement impact'
       ],
       color: 'from-purple-500 to-pink-500'
     },
     {
       icon: TrendingUp,
-      title: 'Brand Growth',
-      description: 'Comprehensive strategies to elevate your brand presence and market position.',
+      title: 'Creator Management',
+      description: 'We nurture lasting creator relationships built on trust, creativity, and shared purpose.',
       features: [
-        'Brand positioning strategy',
-        'Market research & insights',
-        'Competitive analysis',
-        'Long-term growth planning'
+        'Talent onboarding & communication',
+        'Performance coaching & creative direction',
+        'Long-term growth strategy',
+        'Collaborative brand alignment'
       ],
       color: 'from-green-500 to-emerald-500'
-    },
-    {
-      icon: Layers,
-      title: 'UGC Strategy',
-      description: 'Leverage user-generated content to build authentic brand connections.',
-      features: [
-        'UGC campaign design',
-        'Community engagement',
-        'Content curation & rights',
-        'Amplification strategies'
-      ],
-      color: 'from-orange-500 to-red-500'
-    }
-  ]
-
-  const processSteps = [
-    {
-      title: 'Discovery',
-      description: 'Deep dive into your brand, goals, and target audience.'
-    },
-    {
-      title: 'Strategy',
-      description: 'Develop a comprehensive campaign strategy tailored to your objectives.'
-    },
-    {
-      title: 'Execution',
-      description: 'Launch and manage campaigns with our premium influencer network.'
-    },
-    {
-      title: 'Optimization',
-      description: 'Monitor performance and optimize for maximum ROI.'
     }
   ]
 
@@ -107,17 +77,16 @@ export default function Services() {
                 <span className="text-sm font-medium text-mm-ink">Our Services</span>
               </div>
           <h2 className="text-4xl lg:text-6xl font-bold text-mm-ink mb-6">
-            <span className="gradient-text">Premium</span> Solutions
+            <span className="gradient-text">Purpose-Driven</span> Solutions
             <br />
-            for Elite Brands
+            for Modern Brands
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            We offer comprehensive influencer marketing services designed to deliver exceptional results 
-            for luxury brands seeking authentic, high-impact campaigns.
+            We craft influencer campaigns and creator partnerships that move people, build culture, and turn creativity into real impact.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -159,49 +128,21 @@ export default function Services() {
                   </div>
 
                   {/* CTA */}
-                  <motion.div
-                    whileHover={safeMode ? {} : { x: 5 }}
-                        className="inline-flex items-center space-x-2 text-mm-brown font-semibold group-hover:text-mm-ink transition-colors cursor-pointer"
-                  >
-                    <span>Learn More</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.div>
+                  <Link href="/services">
+                    <motion.div
+                      whileHover={safeMode ? {} : { x: 5 }}
+                      className="inline-flex items-center space-x-2 text-mm-brown font-semibold group-hover:text-mm-ink transition-colors cursor-pointer"
+                    >
+                      <span>Learn More</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </motion.div>
+                  </Link>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Process Section */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={variants}
-          transition={transition}
-          className="text-center mb-16"
-        >
-              <h3 className="text-3xl font-bold mb-4 text-mm-ink">Our Seamless Process</h3>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            From initial strategy to campaign execution and detailed reporting, we ensure a smooth and effective journey.
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {processSteps.map((step, index) => (
-            <motion.div
-              key={step.title}
-              initial="hidden"
-              animate="visible"
-              variants={variants}
-              transition={safeMode ? { duration: 0 } : { duration: 0.6, delay: index * 0.1 }}
-              className="luxury-card text-center group"
-            >
-                  <div className="text-4xl font-bold text-mm-brown mb-4">{index + 1}.</div>
-                  <h4 className="text-xl font-semibold text-mm-ink mb-2">{step.title}</h4>
-              <p className="text-gray-600 text-sm">{step.description}</p>
-            </motion.div>
-          ))}
-        </div>
       </div>
     </section>
   )

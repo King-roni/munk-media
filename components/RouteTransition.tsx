@@ -42,10 +42,11 @@ export default function RouteTransition({ children }: RouteTransitionProps) {
         const key = el.getAttribute('data-se')
         if (key) {
           const rect = el.getBoundingClientRect()
+          const htmlEl = el as HTMLElement
           sharedElementMap.set(key, {
             element: el,
             rect: rect,
-            originalTransform: el.style.transform,
+            originalTransform: htmlEl.style.transform,
           })
         }
       })
@@ -83,8 +84,9 @@ export default function RouteTransition({ children }: RouteTransitionProps) {
       // Restore shared elements
       if (sharedElementMap.size > 0) {
         sharedElementMap.forEach((data, key) => {
-          const { element, originalTransform } = data
-          tl.to(element, {
+          const { element } = data
+          const htmlEl = element as HTMLElement
+          tl.to(htmlEl, {
             scale: 1,
             opacity: 1,
             duration: motion.sharedElement.duration,

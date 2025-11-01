@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, Calendar, Users, Star, ArrowRight, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, Star, ArrowRight, CheckCircle } from 'lucide-react'
 import { useMotion } from './MotionProvider'
 import { useState, useTransition } from 'react'
 import { submitContactForm } from '@/app/actions/contact'
@@ -24,7 +24,6 @@ export default function Contact() {
       email: formData.get('email') as string,
       company: formData.get('company') as string,
       phone: formData.get('phone') as string,
-      budget: formData.get('budget') as string,
       message: formData.get('message') as string,
       website: formData.get('website') as string, // honeypot
     }
@@ -67,15 +66,15 @@ export default function Contact() {
         >
           <div className="inline-flex items-center space-x-2 bg-mm-brown/10 px-4 py-2 rounded-full border border-mm-brown/20 mb-6">
             <Mail className="w-4 h-4 text-mm-brown" />
-            <span className="text-sm font-medium text-mm-ink">Contact Us</span>
+            <span className="text-sm font-medium text-mm-ink">Contact Munk Media</span>
           </div>
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-            <span className="gradient-text">Let's Create</span>
+            <span className="gradient-text">Let's Create Something</span>
             <br />
-            Something Amazing
+            That Moves Culture
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Ready to elevate your brand with premium influencer marketing? Let's discuss your goals and create a campaign that delivers exceptional results.
+            Whether you're a brand looking to scale with creators or a storyteller ready to collaborate — we'd love to hear from you. Let's start something that actually matters.
           </p>
         </motion.div>
 
@@ -90,7 +89,7 @@ export default function Contact() {
             <div>
               <h3 className="text-3xl font-bold mb-6 text-mm-ink">Get in Touch</h3>
               <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                We're here to help you create impactful influencer marketing campaigns. Reach out to us through any of the channels below.
+                We're here to build real partnerships that drive impact. Reach out to us anytime through the channels below.
               </p>
             </div>
             
@@ -102,7 +101,7 @@ export default function Contact() {
                   </div>
                   <div className="flex-1">
                     <h4 className="font-bold text-mm-ink mb-1">Email Us</h4>
-                    <p className="text-gray-600 mb-1">hello@munkmedia.com</p>
+                    <p className="text-gray-600 mb-1">info@munk-media.com</p>
                     <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">Send us an email</span>
                   </div>
                 </div>
@@ -115,7 +114,7 @@ export default function Contact() {
                   </div>
                   <div className="flex-1">
                     <h4 className="font-bold text-mm-ink mb-1">Call Us</h4>
-                    <p className="text-gray-600 mb-1">+1 (555) 123-4567</p>
+                    <p className="text-gray-600 mb-1">+31 (06) 15548053</p>
                     <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">Schedule a call</span>
                   </div>
                 </div>
@@ -127,9 +126,9 @@ export default function Contact() {
                     <MapPin className="w-6 h-6 text-mm-ink" />
                   </div>
                   <div className="flex-1">
-                    <h4 className="font-bold text-mm-ink mb-1">Visit Us</h4>
-                    <p className="text-gray-600 mb-1">New York, NY</p>
-                    <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">Get directions</span>
+                    <h4 className="font-bold text-mm-ink mb-1">Where We Operate</h4>
+                    <p className="text-gray-600 mb-1">Australia</p>
+                    <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">We work with brands and creators worldwide</span>
                   </div>
                 </div>
               </div>
@@ -144,8 +143,8 @@ export default function Contact() {
             className="luxury-card"
           >
             <div className="mb-8">
-              <h3 className="text-3xl font-bold mb-4 text-mm-ink">Start Your Campaign</h3>
-              <p className="text-gray-600">Fill out the form below and we'll get back to you within 24 hours to discuss your project.</p>
+              <h3 className="text-3xl font-bold mb-4 text-mm-ink">Start Your Project</h3>
+              <p className="text-gray-600">Fill out the form below — our team will reach out within 24 hours to explore how we can bring your vision to life.</p>
             </div>
 
             {/* Success Message */}
@@ -192,20 +191,14 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-mm-ink mb-2">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all" placeholder="+1 (555) 123-4567" />
+                  <input type="tel" id="phone" name="phone" className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all" placeholder="+31 (06) 15548053" />
                 </div>
               </div>
               
-              <div>
-                <label htmlFor="budget" className="block text-sm font-medium text-mm-ink mb-2">Project Budget</label>
-                <select id="budget" name="budget" className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all">
-                  <option value="">Select budget range</option>
-                  <option value="10k-25k">$10,000 - $25,000</option>
-                  <option value="25k-50k">$25,000 - $50,000</option>
-                  <option value="50k-100k">$50,000 - $100,000</option>
-                  <option value="100k+">$100,000+</option>
-                </select>
-              </div>
+              {/* Updated all contact forms across site:
+                   - Removed 'Project Budget' field
+                   - Unified brand copy
+                   - Streamlined layout and improved storytelling focus */}
               
               <div>
                 <label htmlFor="message" className="block text-sm font-medium text-mm-ink mb-2">Project Details *</label>
@@ -234,8 +227,9 @@ export default function Contact() {
           className="text-center"
         >
           <div className="inline-flex items-center space-x-2 bg-mm-brown/10 px-6 py-3 rounded-full border border-mm-brown/20">
+            {/* Replaced response-time pill with brand line to match Munk Media voice and tone. */}
             <Star className="w-5 h-5 text-mm-brown" />
-            <span className="text-mm-ink font-medium">Average response time: 4 hours</span>
+            <span className="text-mm-ink font-medium">We build movement, not just marketing.</span>
           </div>
         </motion.div>
       </div>

@@ -62,17 +62,17 @@ export function Headline({
   accent?: boolean
 }) {
   const Tag = `h${level}` as keyof JSX.IntrinsicElements
-  const sizeClasses = {
-    '1': 'text-4xl md:text-6xl lg:text-7xl',
-    '2': 'text-3xl md:text-5xl',
-    '3': 'text-2xl md:text-4xl',
-    '4': 'text-xl md:text-3xl',
-    '5': 'text-lg md:text-2xl',
-    '6': 'text-base md:text-xl',
+  const sizeClasses: Record<number, string> = {
+    1: 'text-4xl md:text-6xl lg:text-7xl',
+    2: 'text-3xl md:text-5xl',
+    3: 'text-2xl md:text-4xl',
+    4: 'text-xl md:text-3xl',
+    5: 'text-lg md:text-2xl',
+    6: 'text-base md:text-xl',
   }
 
   return (
-    <Tag className={`font-heading ${sizeClasses[level as keyof typeof sizeClasses]} ${accent ? 'font-accent' : ''} ${className}`}>
+    <Tag className={`font-heading ${sizeClasses[level]} ${accent ? 'font-accent' : ''} ${className}`}>
       {children}
     </Tag>
   )
