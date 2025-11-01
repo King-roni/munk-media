@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Archivo } from 'next/font/google'
+import { Archivo, DM_Sans } from 'next/font/google'
 import './globals.css'
 import MotionProvider from '@/components/MotionProvider'
 import ScrollProgress from '@/components/ScrollProgress'
@@ -8,6 +8,13 @@ const archivo = Archivo({
   subsets: ['latin'],
   weight: ['700', '900'],
   variable: '--font-archivo',
+  display: 'swap',
+})
+
+const dmSans = DM_Sans({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-dm-sans',
   display: 'swap',
 })
 
@@ -43,7 +50,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${archivo.variable} bg-mm-ivory text-mm-ink font-body antialiased`}>
+      <body className={`${archivo.variable} ${dmSans.variable} bg-mm-ivory text-mm-ink font-body antialiased`}>
         <ScrollProgress />
         <MotionProvider>
           {children}

@@ -22,11 +22,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        heading: ['Horizon', 'Archivo Black', 'system-ui', 'sans-serif'],
-        body: ['DM Sans', 'system-ui', 'sans-serif'],
-        accent: ['Tan Mon Cheri', 'system-ui', 'serif'],
-        sans: ['DM Sans', 'system-ui', 'sans-serif'],
-        display: ['Archivo Black', 'system-ui', 'sans-serif'],
+        heading: ['var(--font-archivo)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+        accent: ['system-ui', 'serif'],
+        sans: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-archivo)', 'system-ui', 'sans-serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

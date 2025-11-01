@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import { MDXRemote } from 'next-mdx-remote'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getPostBySlug, getPostsWithAdjacent } from '@/lib/blog/utils'

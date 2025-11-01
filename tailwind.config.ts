@@ -16,9 +16,9 @@ const config: Config = {
         'mm-ink': '#322012',
       },
       fontFamily: {
-        heading: ['Horizon', 'Archivo Black', 'system-ui', 'sans-serif'],
-        body: ['DM Sans', 'system-ui', 'sans-serif'],
-        accent: ['Tan Mon Cheri', 'system-ui', 'serif'],
+        heading: ['var(--font-archivo)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-dm-sans)', 'system-ui', 'sans-serif'],
+        accent: ['system-ui', 'serif'],
       },
       container: { 
         center: true, 
