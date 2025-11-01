@@ -86,7 +86,6 @@ export default function HeroLottie() {
         }}
         rendererSettings={{
           preserveAspectRatio: 'xMidYMid meet',
-          clearCanvas: true,
         }}
       />
     </div>

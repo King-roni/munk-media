@@ -58,7 +58,9 @@ for (const f of files) {
   // Rule B: check relative import existence & case
   const importRe = /import\s+.+?\s+from\s+['"](.+?)['"]/g;
   const requireRe = /require\(['"](.+?)['"]\)/g;
-  const matches = [...src.matchAll(importRe), ...src.matchAll(requireRe)];
+  const importMatches = Array.from(src.matchAll(importRe));
+  const requireMatches = Array.from(src.matchAll(requireRe));
+  const matches = importMatches.concat(requireMatches);
   for (const m of matches) {
     const target = m[1];
     if (!target.startsWith('.')) continue; // skip aliases, handled by TS
