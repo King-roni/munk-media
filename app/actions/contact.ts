@@ -19,7 +19,6 @@ export async function submitContactForm(data: ContactFormData) {
       email: validatedData.email,
       company: validatedData.company,
       phone: validatedData.phone,
-      budget: validatedData.budget,
       message: validatedData.message,
       timestamp: new Date().toISOString(),
     })

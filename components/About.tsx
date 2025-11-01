@@ -8,32 +8,32 @@ export default function About() {
   const { safeMode } = useMotion()
 
   const achievements = [
-    { icon: Award, value: '50+', label: 'Awards Won' },
-    { icon: Users, value: '200+', label: 'Brands Served' },
-    { icon: TrendingUp, value: '300%', label: 'Avg. ROI' },
-    { icon: Target, value: '95%', label: 'Campaign Success' },
+    { icon: Award, value: '∞', label: 'Endless Creativity' },
+    { icon: Users, value: '100+', label: 'Creators in our network' },
+    { icon: TrendingUp, value: '0%', label: 'Fake followers tolerated' },
+    { icon: Target, value: '1', label: 'Shared mission' },
   ]
 
   const values = [
     {
-      title: 'Innovation First',
-      description: 'We leverage cutting-edge strategies and emerging platforms to stay ahead of trends.',
-      icon: '🚀'
+      title: 'Authentic Creativity',
+      description: 'We turn bold ideas into meaningful stories that move people and shape culture.',
+      icon: '🔥'
     },
     {
-      title: 'Results Driven',
-      description: 'Every campaign is measured against clear KPIs with transparent reporting.',
-      icon: '📊'
+      title: 'Driven by Purpose',
+      description: 'Every campaign begins with intention, built to create real impact, not noise.',
+      icon: '⚡'
     },
     {
-      title: 'Premium Quality',
-      description: 'We work exclusively with top-tier influencers and luxury brands.',
+      title: 'Built on Trust',
+      description: 'We grow through genuine collaboration and lasting relationships with our creators and partners.',
       icon: '💎'
     },
     {
-      title: 'Strategic Partnership',
-      description: 'We become an extension of your team, not just another vendor.',
-      icon: '🤝'
+      title: 'Connected Through Culture',
+      description: 'We don\'t follow trends, we create movement through creativity, honesty, and shared vision.',
+      icon: '🌍'
     }
   ]
 
@@ -88,9 +88,9 @@ export default function About() {
             transition={transition}
             className="text-left"
           >
-                <h3 className="text-3xl font-bold mb-4 text-mm-ink">Our Journey & Impact</h3>
+                <h3 className="text-3xl font-bold mb-4 text-mm-ink">Our Story & Vision</h3>
             <p className="text-lg text-gray-600 mb-6">
-              Since our inception, we've partnered with leading brands to craft authentic narratives and drive unparalleled engagement. Our innovative strategies and deep understanding of the creator economy set us apart.
+              We're building the next era of influencer marketing, one driven by creativity, culture, and connection. At Munk Media, every partnership starts with purpose. We craft campaigns that move people, not just metrics, and we grow through collaboration that shapes what's next.
             </p>
             <ul className="space-y-3 text-lg text-gray-700">
               <motion.li 
@@ -101,7 +101,7 @@ export default function About() {
                 className="flex items-center space-x-3"
               >
                     <CheckCircle className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                <span>Pioneering data-driven influencer strategies</span>
+                <span>Purpose-driven influencer strategies</span>
               </motion.li>
               <motion.li 
                 initial="hidden"
@@ -111,7 +111,7 @@ export default function About() {
                 className="flex items-center space-x-3"
               >
                     <CheckCircle className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                <span>Exclusive network of top-tier global creators</span>
+                <span>Curated network of authentic creators</span>
               </motion.li>
               <motion.li 
                 initial="hidden"
@@ -121,7 +121,7 @@ export default function About() {
                 className="flex items-center space-x-3"
               >
                     <CheckCircle className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                <span>Measurable ROI and transparent reporting</span>
+                <span>Culture-focused storytelling with measurable impact</span>
               </motion.li>
             </ul>
           </motion.div>
@@ -162,7 +162,7 @@ export default function About() {
         >
               <h3 className="text-3xl font-bold mb-4 text-mm-ink">Our Core Values</h3>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            These principles guide every decision we make and every campaign we create.
+            These values shape every story we tell and every partnership we build.
           </p>
         </motion.div>
 

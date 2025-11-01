@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Mail, Phone, MapPin, ArrowRight, Calendar, Users, Star, Clock, CheckCircle } from 'lucide-react'
+import { Mail, Phone, MapPin, ArrowRight, Star, CheckCircle } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { useMotion } from '@/components/MotionProvider'
@@ -14,9 +14,7 @@ export default function ContactPage() {
     email: '',
     company: '',
     phone: '',
-    budget: '',
-    message: '',
-    nda: false
+    message: ''
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
@@ -49,9 +47,7 @@ export default function ContactPage() {
         email: '',
         company: '',
         phone: '',
-        budget: '',
-        message: '',
-        nda: false
+        message: ''
       })
     }, 3000)
   }
@@ -76,7 +72,7 @@ export default function ContactPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-mm-stone/30 to-mm-ivory">
+      <section className="pt-40 pb-16 bg-gradient-to-br from-mm-stone/30 to-mm-ivory">
         <div className="container-max">
           <motion.div
             initial="hidden"
@@ -90,12 +86,12 @@ export default function ContactPage() {
               <span className="text-sm font-medium text-mm-ink">Contact Us</span>
             </div>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6">
-              <span className="gradient-text">Let's Create</span>
+              <span className="gradient-text">Let's Create Something</span>
               <br />
-              Something Amazing
+              That Moves Culture
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Ready to elevate your brand with premium influencer marketing? Let's discuss your goals and create a campaign that delivers exceptional results.
+              Whether you're a brand looking to scale with creators or a storyteller ready to collaborate — we'd love to hear from you. Let's start something that actually matters.
             </p>
           </motion.div>
         </div>
@@ -116,7 +112,7 @@ export default function ContactPage() {
               <div>
                 <h2 className="text-3xl font-bold mb-6 text-mm-ink">Get in Touch</h2>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                  We're here to help you create impactful influencer marketing campaigns. Reach out to us through any of the channels below.
+                  We're here to build real partnerships that drive impact. Reach out to us anytime through the channels below.
                 </p>
               </div>
               
@@ -128,7 +124,7 @@ export default function ContactPage() {
                     </div>
                     <div className="flex-1">
                       <h4 className="font-bold text-mm-ink mb-1">Email Us</h4>
-                      <p className="text-gray-600 mb-1">hello@munkmedia.com</p>
+                      <p className="text-gray-600 mb-1">info@munk-media.com</p>
                       <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">Send us an email</span>
                     </div>
                   </div>
@@ -141,7 +137,7 @@ export default function ContactPage() {
                     </div>
                     <div className="flex-1">
                       <h4 className="font-bold text-mm-ink mb-1">Call Us</h4>
-                      <p className="text-gray-600 mb-1">+1 (555) 123-4567</p>
+                      <p className="text-gray-600 mb-1">+31 (06) 15548053</p>
                       <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">Schedule a call</span>
                     </div>
                   </div>
@@ -153,64 +149,15 @@ export default function ContactPage() {
                       <MapPin className="w-6 h-6 text-mm-ivory" />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-bold text-mm-ink mb-1">Visit Us</h4>
-                      <p className="text-gray-600 mb-1">New York, NY</p>
-                      <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">Get directions</span>
+                      <h4 className="font-bold text-mm-ink mb-1">Where We Operate</h4>
+                      <p className="text-gray-600 mb-1">Australia</p>
+                      <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">We work with brands and creators worldwide</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Quick Actions */}
-              <div>
-                <h3 className="text-xl font-bold mb-6 text-mm-ink">Quick Actions</h3>
-                <div className="space-y-4">
-                  <div className="luxury-card cursor-pointer group">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                          <Calendar className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h5 className="font-bold text-mm-ink group-hover:text-mm-brown transition-colors">Book Discovery Call</h5>
-                          <p className="text-sm text-gray-600">30-minute strategy session</p>
-                        </div>
-                      </div>
-                      <ArrowRight className="w-5 h-5 text-mm-brown group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                  
-                  <div className="luxury-card cursor-pointer group">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
-                          <Users className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h5 className="font-bold text-mm-ink group-hover:text-mm-brown transition-colors">Explore Network</h5>
-                          <p className="text-sm text-gray-600">View our creator database</p>
-                        </div>
-                      </div>
-                      <ArrowRight className="w-5 h-5 text-mm-brown group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                  
-                  <div className="luxury-card cursor-pointer group">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-4">
-                        <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center">
-                          <Star className="w-6 h-6 text-white" />
-                        </div>
-                        <div>
-                          <h5 className="font-bold text-mm-ink group-hover:text-mm-brown transition-colors">Case Study Review</h5>
-                          <p className="text-sm text-gray-600">See our latest results</p>
-                        </div>
-                      </div>
-                      <ArrowRight className="w-5 h-5 text-mm-brown group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Removed 'Quick Actions' section for a cleaner and more conversion-focused contact layout. */}
             </motion.div>
 
             {/* Contact Form */}
@@ -222,8 +169,8 @@ export default function ContactPage() {
             >
               <div className="luxury-card">
                 <div className="mb-8">
-                  <h3 className="text-3xl font-bold mb-4 text-mm-ink">Start Your Campaign</h3>
-                  <p className="text-gray-600">Fill out the form below and we'll get back to you within 24 hours to discuss your project.</p>
+                  <h3 className="text-3xl font-bold mb-4 text-mm-ink">Start Your Project</h3>
+                  <p className="text-gray-600">Fill out the form below — our team will reach out within 24 hours to explore how we can bring your vision to life.</p>
                 </div>
 
                 {isSubmitted ? (
@@ -291,27 +238,15 @@ export default function ContactPage() {
                           value={formData.phone}
                           onChange={handleInputChange}
                           className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all" 
-                          placeholder="+1 (555) 123-4567" 
+                          placeholder="+31 (06) 15548053" 
                         />
                       </div>
                     </div>
                     
-                    <div>
-                      <label htmlFor="budget" className="block text-sm font-medium text-mm-ink mb-2">Project Budget</label>
-                      <select 
-                        id="budget" 
-                        name="budget" 
-                        value={formData.budget}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all"
-                      >
-                        <option value="">Select budget range</option>
-                        <option value="10k-25k">$10,000 - $25,000</option>
-                        <option value="25k-50k">$25,000 - $50,000</option>
-                        <option value="50k-100k">$50,000 - $100,000</option>
-                        <option value="100k+">$100,000+</option>
-                      </select>
-                    </div>
+                    {/* Updated all contact forms across site:
+                         - Removed 'Project Budget' field
+                         - Unified brand copy
+                         - Streamlined layout and improved storytelling focus */}
                     
                     <div>
                       <label htmlFor="message" className="block text-sm font-medium text-mm-ink mb-2">Project Details *</label>
@@ -327,19 +262,6 @@ export default function ContactPage() {
                       ></textarea>
                     </div>
 
-                    <div className="flex items-start space-x-3">
-                      <input 
-                        type="checkbox" 
-                        id="nda" 
-                        name="nda"
-                        checked={formData.nda}
-                        onChange={handleInputChange}
-                        className="mt-1 w-4 h-4 text-mm-brown border-gray-300 rounded focus:ring-mm-brown" 
-                      />
-                      <label htmlFor="nda" className="text-sm text-gray-600">
-                        I agree to sign an NDA if required for project discussion
-                      </label>
-                    </div>
                     
                     <button 
                       type="submit" 
@@ -376,8 +298,9 @@ export default function ContactPage() {
             transition={transition}
           >
             <div className="inline-flex items-center space-x-2 bg-mm-brown/10 px-6 py-3 rounded-full border border-mm-brown/20">
-              <Clock className="w-5 h-5 text-mm-brown" />
-              <span className="text-mm-ink font-medium">Average response time: 4 hours</span>
+              {/* Replaced response-time pill with brand line to match Munk Media voice and tone. */}
+              <Star className="w-5 h-5 text-mm-brown" />
+              <span className="text-mm-ink font-medium">We build movement, not just marketing.</span>
             </div>
           </motion.div>
         </div>

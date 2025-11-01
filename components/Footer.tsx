@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Instagram, Twitter, Linkedin, Youtube, ArrowUp, Mail, Phone, MapPin, ArrowRight } from 'lucide-react'
+import { Instagram, Twitter, Linkedin, ArrowUp, Mail, Phone, MapPin, ArrowRight, FileText } from 'lucide-react'
 import Link from 'next/link'
 import { useMotion } from './MotionProvider'
 
@@ -45,7 +45,7 @@ export default function Footer() {
               <span className="text-2xl font-bold">Munk Media</span>
             </div>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              Full-funnel influencer campaigns, UGC production, and creator management for high-growth brands. We connect you with top-tier creators to amplify your brand's presence.
+              Munk Media connects creators and brands through stories that move people, not just numbers. From influencer campaigns to authentic UGC, we build partnerships that shape culture and drive real growth.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-pink-500" aria-label="Instagram">
@@ -57,8 +57,10 @@ export default function Footer() {
               <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-blue-600" aria-label="LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-red-500" aria-label="YouTube">
-                <Youtube className="w-5 h-5" />
+              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-black" aria-label="TikTok">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                </svg>
               </a>
             </div>
           </motion.div>
@@ -74,7 +76,6 @@ export default function Footer() {
               <li><Link href="/services" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">Influencer Campaigns</Link></li>
               <li><Link href="/services" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">UGC Production</Link></li>
               <li><Link href="/services" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">Creator Management</Link></li>
-              <li><Link href="/services" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">Paid Social Amplification</Link></li>
             </ul>
           </motion.div>
 
@@ -87,8 +88,7 @@ export default function Footer() {
             <h3 className="text-lg font-bold mb-6 text-mm-ivory">Company</h3>
             <ul className="space-y-3">
               <li><Link href="/about" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">About Us</Link></li>
-              <li><Link href="/case-studies" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">Case Studies</Link></li>
-              <li><Link href="/creators" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">Creator Network</Link></li>
+              <li><Link href="/creators" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">Creators</Link></li>
               <li><Link href="/contact" className="text-gray-400 hover:text-mm-brown transition-colors duration-300">Contact</Link></li>
             </ul>
           </motion.div>
@@ -103,15 +103,19 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                <span className="text-gray-400">hello@munkmedia.com</span>
+                <span className="text-gray-400">matisse@munk-media.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                <span className="text-gray-400">+1 (555) 123-4567</span>
+                <span className="text-gray-400">+31 6 15548053</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                <span className="text-gray-400">New York, NY</span>
+                <span className="text-gray-400">Amsterdam, A'dam</span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FileText className="w-5 h-5 text-mm-brown flex-shrink-0" />
+                <span className="text-gray-400">KVK: 98097636</span>
               </div>
             </div>
             

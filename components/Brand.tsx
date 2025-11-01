@@ -16,7 +16,7 @@ export function Brand() {
         priority
         className="h-7 w-7 md:h-9 md:w-9 object-contain transition-transform group-hover:scale-105"
       />
-      <span className="text-lg md:text-xl font-semibold tracking-tight text-mm-ink">
+      <span className="text-lg md:text-xl font-semibold tracking-tight text-white">
         Munk Media
       </span>
     </Link>

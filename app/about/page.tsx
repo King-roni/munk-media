@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Award, Target, Users, TrendingUp, CheckCircle, Star, Heart, Lightbulb } from 'lucide-react'
+import { Award, CheckCircle } from 'lucide-react'
 import Image from 'next/image'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
@@ -10,75 +10,22 @@ import { useMotion } from '@/components/MotionProvider'
 export default function AboutPage() {
   const { safeMode } = useMotion()
 
-  const achievements = [
-    { icon: Award, value: '50+', label: 'Awards Won' },
-    { icon: Users, value: '200+', label: 'Brands Served' },
-    { icon: TrendingUp, value: '300%', label: 'Avg. ROI' },
-    { icon: Target, value: '95%', label: 'Campaign Success' },
-  ]
 
-  const values = [
+  const founders = [
     {
-      title: 'Innovation First',
-      description: 'We leverage cutting-edge strategies and emerging platforms to stay ahead of trends.',
-      icon: Lightbulb,
-      color: 'from-blue-500 to-cyan-500'
+      name: 'Pepijn van Erp',
+      title: 'Co-Founder / Head of Marketing',
+      bio: 'A marketing strategist known for his ability to merge data with creativity. Pepijn leads Munk Media\'s marketing vision, crafting bold campaigns that deliver both impact and elegance.',
+      avatar: '/team/pepijn-van-erp.jpg'
     },
     {
-      title: 'Results Driven',
-      description: 'Every campaign is measured against clear KPIs with transparent reporting.',
-      icon: TrendingUp,
-      color: 'from-green-500 to-emerald-500'
-    },
-    {
-      title: 'Premium Quality',
-      description: 'We work exclusively with top-tier influencers and luxury brands.',
-      icon: Star,
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      title: 'Strategic Partnership',
-      description: 'We become an extension of your team, not just another vendor.',
-      icon: Heart,
-      color: 'from-orange-500 to-red-500'
+      name: 'Matisse Unkel',
+      title: 'Co-Founder / Creative Director',
+      bio: 'Vision-driven creative with a passion for human storytelling. Matisse leads the creative direction of Munk Media, ensuring every campaign combines artistry, precision, and emotional depth.',
+      avatar: '/team/matisse-unkel.jpg'
     }
   ]
 
-  const team = [
-    {
-      name: 'Sarah Johnson',
-      role: 'Founder & CEO',
-      bio: 'Former VP of Marketing at Fortune 500 companies with 15+ years in influencer marketing.',
-      avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Head of Strategy',
-      bio: 'Data-driven strategist with expertise in performance marketing and brand partnerships.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-e695c31a6179?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    },
-    {
-      name: 'Emma Rodriguez',
-      role: 'Creative Director',
-      bio: 'Award-winning creative director specializing in authentic brand storytelling.',
-      avatar: 'https://images.unsplash.com/photo-1529626465613-d8a49cc7b5e0?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    },
-    {
-      name: 'David Kim',
-      role: 'Head of Operations',
-      bio: 'Operations expert ensuring seamless campaign execution and client satisfaction.',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-    }
-  ]
-
-  const credentials = [
-    'Google Partner Agency',
-    'Meta Business Partner',
-    'TikTok Marketing Partner',
-    'YouTube Partner Program',
-    'Influencer Marketing Hub Top Agency',
-    'Digiday Awards Winner'
-  ]
 
   // Safe mode variants - no animations, immediate visibility
   const safeVariants = {
@@ -100,7 +47,7 @@ export default function AboutPage() {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="section-padding bg-gradient-to-br from-mm-stone/30 to-mm-ivory">
+      <section className="pt-40 pb-16 bg-gradient-to-br from-mm-stone/30 to-mm-ivory">
         <div className="container-max">
           <motion.div
             initial="hidden"
@@ -127,120 +74,127 @@ export default function AboutPage() {
       </section>
 
       {/* Story Section */}
+      {/* Founder Section Added: Replaces old metrics block */}
+      {/* Placeholder image to be replaced with Matisse Unkel's portrait */}
+      {/* Focus on storytelling and founder vision instead of brand stats */}
       <section className="section-padding bg-white">
         <div className="container-max">
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            {/* Left Column - Text Content */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={variants}
               transition={transition}
-              className="text-left"
+              className="space-y-6"
             >
-              <h2 className="text-3xl font-bold mb-4 text-mm-ink">Our Story & Impact</h2>
-              <p className="text-lg text-gray-600 mb-6">
-                Since our inception, we've partnered with leading brands to craft authentic narratives and drive unparalleled engagement. Our innovative strategies and deep understanding of the creator economy set us apart.
-              </p>
-              <ul className="space-y-3 text-lg text-gray-700">
+              <h2 className="text-3xl lg:text-4xl font-bold text-mm-ink mb-6">Our Story & Vision</h2>
+              <div className="space-y-6">
+                <p className="text-lg leading-relaxed text-gray-700">
+                  Munk Media was founded with a simple belief, that true influence isn't measured in numbers, but in impact.
+                </p>
+                <p className="text-lg leading-relaxed text-gray-700">
+                  Built from years of experience in creative strategy and digital storytelling, Munk Media merges artistry with analytics to help brands connect authentically with audiences who care.
+                </p>
+              </div>
+              <ul className="space-y-4 mt-8">
                 <motion.li 
                   initial="hidden"
                   animate="visible"
                   variants={variants}
                   transition={safeMode ? { duration: 0 } : { duration: 0.5, delay: 0.1 }}
-                  className="flex items-center space-x-3"
+                  className="flex items-start space-x-3"
                 >
-                  <CheckCircle className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                  <span>Pioneering data-driven influencer strategies</span>
+                  <CheckCircle className="w-6 h-6 text-mm-brown flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-gray-700">Data-informed storytelling rooted in human connection</span>
                 </motion.li>
                 <motion.li 
                   initial="hidden"
                   animate="visible"
                   variants={variants}
                   transition={safeMode ? { duration: 0 } : { duration: 0.5, delay: 0.2 }}
-                  className="flex items-center space-x-3"
+                  className="flex items-start space-x-3"
                 >
-                  <CheckCircle className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                  <span>Exclusive network of top-tier global creators</span>
+                  <CheckCircle className="w-6 h-6 text-mm-brown flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-gray-700">A boutique approach that values quality over volume</span>
                 </motion.li>
                 <motion.li 
                   initial="hidden"
                   animate="visible"
                   variants={variants}
                   transition={safeMode ? { duration: 0 } : { duration: 0.5, delay: 0.3 }}
-                  className="flex items-center space-x-3"
+                  className="flex items-start space-x-3"
                 >
-                  <CheckCircle className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                  <span>Measurable ROI and transparent reporting</span>
+                  <CheckCircle className="w-6 h-6 text-mm-brown flex-shrink-0 mt-0.5" />
+                  <span className="text-lg text-gray-700">A team driven by long-term brand growth, not quick wins</span>
                 </motion.li>
               </ul>
             </motion.div>
 
+            {/* Right Column - Founder Section */}
             <motion.div
               initial="hidden"
               animate="visible"
               variants={variants}
               transition={safeMode ? { duration: 0 } : { duration: 0.8, delay: 0.2 }}
-              className="grid grid-cols-2 gap-6"
+              className="lg:sticky lg:top-24"
             >
-              {achievements.map((achievement, index) => (
-                <motion.div
-                  key={achievement.label}
-                  initial="hidden"
-                  animate="visible"
-                  variants={variants}
-                  transition={safeMode ? { duration: 0 } : { duration: 0.6, delay: index * 0.1 }}
-                  className="luxury-card text-center group"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-br from-mm-brown to-mm-stone rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <achievement.icon className="w-8 h-8 text-mm-ivory" />
+              <div className="bg-gradient-to-br from-mm-stone/40 to-mm-ivory rounded-2xl p-8 shadow-lg">
+                {/* Founder Portrait */}
+                <div className="relative mb-6 mx-auto max-w-xs">
+                  <div className="relative w-full aspect-[3/4] rounded-xl overflow-hidden shadow-xl">
+                    <Image
+                      src="/team/matisse-unkel.jpg"
+                      alt="Matisse Unkel, Founder & Creative Director"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      priority
+                      unoptimized
+                    />
                   </div>
-                  <div className="text-3xl font-bold text-mm-ink mb-2">{achievement.value}</div>
-                  <div className="text-sm text-gray-600">{achievement.label}</div>
-                </motion.div>
-              ))}
+                </div>
+
+                {/* Founder Info */}
+                <div className="text-center space-y-4">
+                  <div>
+                    <h3 className="text-2xl font-bold text-mm-ink mb-1">Matisse Unkel</h3>
+                    <p className="text-mm-brown font-semibold">Founder & Creative Director, Munk Media</p>
+                  </div>
+
+                  {/* Founder Bio */}
+                  <div className="space-y-3 text-gray-700 leading-relaxed">
+                    <p>
+                      Driven by a deep passion for modern storytelling, Matisse founded Munk Media to bridge the gap between data-driven strategy and genuine human emotion.
+                    </p>
+                    <p>
+                      With a background in creative marketing and years of experience collaborating with content creators, he built Munk Media as a place where brands grow through authenticity, not algorithms.
+                    </p>
+                  </div>
+
+                  {/* Pull Quote */}
+                  <div className="mt-8 pt-6 border-t border-mm-stone/50">
+                    <blockquote className="text-xl italic text-mm-ink font-medium leading-relaxed">
+                      "Influence is more than attention. It's the ability to move people."
+                    </blockquote>
+                    <p className="text-sm text-gray-600 mt-3">— Matisse Unkel</p>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Values Section */}
-      <section className="section-padding bg-gradient-to-br from-mm-stone/30 to-mm-ivory">
-        <div className="container-max">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={variants}
-            transition={transition}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl font-bold mb-4 text-mm-ink">Our Core Values</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              These principles guide every decision we make and every campaign we create.
-            </p>
-          </motion.div>
+      {/* Deleted 'Our Core Values' section as per updated structure.
+           Focus of the About Us page is now storytelling & founder vision,
+           not internal value statements. */}
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {values.map((value, index) => (
-              <motion.div
-                key={value.title}
-                initial="hidden"
-                animate="visible"
-                variants={variants}
-                transition={safeMode ? { duration: 0 } : { duration: 0.6, delay: index * 0.1 }}
-                className="luxury-card text-center group"
-              >
-                <div className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  <value.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-semibold text-mm-ink mb-2">{value.title}</h3>
-                <p className="text-gray-600 text-sm">{value.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team Section */}
+      {/* Updated: 'Meet the Team' section changed to 'Meet the Founders'
+           Featuring Matisse Unkel & Pepijn van Erp.
+           Removed old team members. Added placeholders for new founder portraits.
+           Layout adjusted to 2-column responsive structure. */}
+      {/* Meet the Founders Section */}
       <section className="section-padding bg-white">
         <div className="container-max">
           <motion.div
@@ -250,97 +204,45 @@ export default function AboutPage() {
             transition={transition}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl font-bold mb-4 text-mm-ink">Meet the Team</h2>
+            <h2 className="text-3xl font-bold mb-4 text-mm-ink">Meet the Founders</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our experienced team of strategists, creatives, and operations experts work together to deliver exceptional results.
+              The creative minds behind Munk Media — shaping the future of influencer marketing through innovation, authenticity, and strategy.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {team.map((member, index) => (
+          <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+            {founders.map((founder, index) => (
               <motion.div
-                key={member.name}
+                key={founder.name}
                 initial="hidden"
                 animate="visible"
                 variants={variants}
                 transition={safeMode ? { duration: 0 } : { duration: 0.6, delay: index * 0.1 }}
                 className="luxury-card text-center group"
               >
-                <div className="relative w-32 h-32 mx-auto mb-6 rounded-full overflow-hidden border-4 border-mm-brown/50 group-hover:border-mm-brown transition-all duration-300">
+                <div className="relative w-40 h-40 mx-auto mb-6 rounded-full overflow-hidden border-4 border-mm-brown/50 group-hover:border-mm-brown transition-all duration-300 bg-mm-stone/30">
                   <Image
-                    src={member.avatar}
-                    alt={member.name}
-                    width={128}
-                    height={128}
+                    src={founder.avatar}
+                    alt={founder.name}
+                    width={160}
+                    height={160}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    unoptimized
                   />
                 </div>
-                <h3 className="text-xl font-bold text-mm-ink mb-2">{member.name}</h3>
-                <div className="text-mm-brown font-semibold mb-3">{member.role}</div>
-                <p className="text-gray-600 text-sm">{member.bio}</p>
+                <h3 className="text-2xl font-bold text-mm-ink mb-2">{founder.name}</h3>
+                <div className="text-mm-brown font-semibold mb-4">{founder.title}</div>
+                <p className="text-gray-600 leading-relaxed">{founder.bio}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Credentials Section */}
-      <section className="section-padding bg-mm-brown text-mm-ivory">
-        <div className="container-max">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={variants}
-            transition={transition}
-            className="text-center mb-16"
-          >
-            <h2 className="text-3xl font-bold mb-4">Our Credentials</h2>
-            <p className="text-xl opacity-90 max-w-2xl mx-auto">
-              Recognized by industry leaders and trusted by premium brands worldwide.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {credentials.map((credential, index) => (
-              <motion.div
-                key={credential}
-                initial="hidden"
-                animate="visible"
-                variants={variants}
-                transition={safeMode ? { duration: 0 } : { duration: 0.6, delay: index * 0.1 }}
-                className="bg-mm-ivory/10 rounded-2xl p-6 text-center group hover:bg-mm-ivory/20 transition-colors"
-              >
-                <div className="text-mm-ivory font-semibold">{credential}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="section-padding bg-white">
-        <div className="container-max text-center">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={variants}
-            transition={transition}
-          >
-            <h2 className="text-3xl font-bold mb-4 text-mm-ink">Ready to Work With Us?</h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-              Let's discuss how our team can help elevate your brand through strategic influencer partnerships.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="btn-luxury">
-                Meet the Team
-              </button>
-              <button className="border border-mm-brown text-mm-brown px-8 py-4 rounded-xl font-semibold hover:bg-mm-stone/40 transition-colors">
-                View Careers
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Deleted 'Our Credentials' and 'Ready to Work With Us?' sections 
+           as per updated About Us page structure.
+           Purpose: streamline the page to focus on Munk Media's story and founders.
+           Removed all badges, partner mentions, and CTA buttons. */}
 
       <Footer />
     </main>

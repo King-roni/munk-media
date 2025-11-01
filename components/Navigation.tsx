@@ -26,8 +26,8 @@ export default function Navigation() {
     { name: 'Home', href: '/' },
     { name: 'Services', href: '/services' },
     { name: 'Creators', href: '/creators' },
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'About', href: '/about' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'About us', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ]
 
@@ -52,9 +52,7 @@ export default function Navigation() {
       animate="visible"
       variants={variants}
       transition={transition}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-mm-ivory/95 backdrop-blur-md shadow-lg' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-mm-brown shadow-lg`}
     >
       <div className="container-max">
         <div className="flex items-center justify-between h-20 px-6">
@@ -69,12 +67,12 @@ export default function Navigation() {
                 href={item.href}
                 className={`font-medium transition-colors duration-300 relative group ${
                   pathname === item.href 
-                    ? 'text-mm-brown' 
-                    : 'text-mm-ink hover:text-mm-brown'
+                    ? 'text-mm-stone' 
+                    : 'text-mm-ivory hover:text-mm-stone'
                 }`}
               >
                 {item.name}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-mm-brown transition-all duration-300 ${
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-mm-stone transition-all duration-300 ${
                   pathname === item.href ? 'w-full' : 'w-0 group-hover:w-full'
                 }`}></span>
               </Link>
@@ -82,8 +80,11 @@ export default function Navigation() {
           </div>
 
           {/* CTA Button */}
-          <Link href="/contact" className="hidden md:block btn-luxury">
-            Book a Call
+          <Link 
+            href="/contact" 
+            className="hidden md:flex items-center space-x-2 bg-mm-stone text-mm-brown px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-mm-stone focus:ring-offset-2 focus:ring-offset-mm-brown"
+          >
+            <span>Book a Call</span>
           </Link>
 
           {/* Mobile Menu Button */}
@@ -93,9 +94,9 @@ export default function Navigation() {
             aria-label="Toggle mobile menu"
           >
             {isMobileMenuOpen ? (
-              <X className="w-6 h-6 text-mm-ink" />
+              <X className="w-6 h-6 text-mm-ivory" />
             ) : (
-              <Menu className="w-6 h-6 text-mm-ink" />
+              <Menu className="w-6 h-6 text-mm-ivory" />
             )}
           </button>
         </div>
@@ -108,7 +109,7 @@ export default function Navigation() {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden bg-mm-ivory border-t border-mm-stone/50"
+              className="md:hidden bg-mm-brown border-t border-mm-ink/30"
             >
               <div className="px-6 py-4 space-y-4">
                 {navItems.map((item) => (
@@ -116,14 +117,18 @@ export default function Navigation() {
                     key={item.name}
                     href={item.href}
                     className={`block font-medium transition-colors duration-300 ${
-                      pathname === item.href ? 'text-mm-brown' : 'text-mm-ink hover:text-mm-brown'
+                      pathname === item.href ? 'text-mm-stone' : 'text-mm-ivory hover:text-mm-stone'
                     }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </Link>
                 ))}
-                <Link href="/contact" className="w-full btn-luxury mt-4" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link 
+                  href="/contact" 
+                  className="w-full bg-mm-stone text-mm-brown px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg text-center transition-all duration-200 mt-4" 
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
                   Book a Call
                 </Link>
               </div>
