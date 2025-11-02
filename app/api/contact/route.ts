@@ -1,21 +1,43 @@
-'use server'
-
-import { contactFormSchema, type ContactFormData } from '@/lib/validations/contact'
+import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { contactFormSchema } from '@/lib/validations/contact'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function submitContactForm(data: ContactFormData) {
+type Body = {
+  name: string
+  email: string
+  company?: string
+  phone?: string
+  message: string
+  website?: string
+}
+
+export async function POST(req: Request) {
   try {
-    // Validate the data
-    const validatedData = contactFormSchema.parse(data)
+    const data = (await req.json()) as Body
+
+    // Validate the data using the schema
+    const validationResult = contactFormSchema.safeParse(data)
+    
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { ok: false, error: 'Invalid form data' },
+        { status: 400 }
+      )
+    }
+
+    const validatedData = validationResult.data
 
     // Honeypot check - if website field is filled, it's a bot
     if (validatedData.website) {
-      return { success: false, error: 'Invalid submission' }
+      return NextResponse.json(
+        { ok: false, error: 'Invalid submission' },
+        { status: 400 }
+      )
     }
 
-    // Send email using Resend
+    // Compose email
     const subject = `New inquiry from ${validatedData.name} — Munk Media`
     const html = `
       <h2>New Contact Submission</h2>
@@ -37,26 +59,13 @@ export async function submitContactForm(data: ContactFormData) {
       html,
     })
 
-    // Return success
-    return {
-      success: true,
-      message: 'Thank you! We\'ll get back to you within 24 hours.',
-    }
-  } catch (error) {
-    console.error('Contact form error:', error)
-    
-    if (error instanceof Error) {
-      return {
-        success: false,
-        error: error.message,
-      }
-    }
-    
-    return {
-      success: false,
-      error: 'Something went wrong. Please try again.',
-    }
+    return NextResponse.json({ ok: true })
+  } catch (err) {
+    console.error('[contact] error', err)
+    return NextResponse.json(
+      { ok: false, error: 'Server error' },
+      { status: 500 }
+    )
   }
 }
-
 
