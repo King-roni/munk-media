@@ -2,8 +2,6 @@ import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
 import { contactFormSchema } from '@/lib/validations/contact'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 type Body = {
   name: string
   email: string
@@ -15,6 +13,16 @@ type Body = {
 
 export async function POST(req: Request) {
   try {
+    // Check for API key first
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      console.warn('[contact] Missing RESEND_API_KEY')
+      return NextResponse.json(
+        { ok: false, error: 'Email service not configured' },
+        { status: 500 }
+      )
+    }
+
     const data = (await req.json()) as Body
 
     // Validate the data using the schema
@@ -37,6 +45,13 @@ export async function POST(req: Request) {
       )
     }
 
+    // Lazy-init Resend only when we have the API key
+    const resend = new Resend(apiKey)
+
+    // Get email addresses with fallbacks
+    const to = process.env.CONTACT_TO_EMAIL || 'info@munk-media.com'
+    const from = process.env.CONTACT_FROM_EMAIL || 'Website <no-reply@munk-media.com>'
+
     // Compose email
     const subject = `New inquiry from ${validatedData.name} — Munk Media`
     const html = `
@@ -52,8 +67,8 @@ export async function POST(req: Request) {
     `
 
     await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL!,
-      to: process.env.CONTACT_TO_EMAIL!,
+      from,
+      to,
       replyTo: validatedData.email,
       subject,
       html,
@@ -63,7 +78,7 @@ export async function POST(req: Request) {
   } catch (err) {
     console.error('[contact] error', err)
     return NextResponse.json(
-      { ok: false, error: 'Server error' },
+      { ok: false, error: 'Failed to send message' },
       { status: 500 }
     )
   }

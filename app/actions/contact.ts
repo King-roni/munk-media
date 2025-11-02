@@ -3,8 +3,6 @@
 import { contactFormSchema, type ContactFormData } from '@/lib/validations/contact'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function submitContactForm(data: ContactFormData) {
   try {
     // Validate the data
@@ -14,6 +12,23 @@ export async function submitContactForm(data: ContactFormData) {
     if (validatedData.website) {
       return { success: false, error: 'Invalid submission' }
     }
+
+    // Check for API key
+    const apiKey = process.env.RESEND_API_KEY
+    if (!apiKey) {
+      console.warn('[contact] Missing RESEND_API_KEY')
+      return { 
+        success: false, 
+        error: 'Email service not configured. Please email us directly at info@munk-media.com.'
+      }
+    }
+
+    // Lazy-init Resend only when we have the API key
+    const resend = new Resend(apiKey)
+
+    // Get email addresses with fallbacks
+    const to = process.env.CONTACT_TO_EMAIL || 'info@munk-media.com'
+    const from = process.env.CONTACT_FROM_EMAIL || 'Website <no-reply@munk-media.com>'
 
     // Send email using Resend
     const subject = `New inquiry from ${validatedData.name} — Munk Media`
@@ -30,8 +45,8 @@ export async function submitContactForm(data: ContactFormData) {
     `
 
     await resend.emails.send({
-      from: process.env.CONTACT_FROM_EMAIL!,
-      to: process.env.CONTACT_TO_EMAIL!,
+      from,
+      to,
       replyTo: validatedData.email,
       subject,
       html,
@@ -45,16 +60,9 @@ export async function submitContactForm(data: ContactFormData) {
   } catch (error) {
     console.error('Contact form error:', error)
     
-    if (error instanceof Error) {
-      return {
-        success: false,
-        error: error.message,
-      }
-    }
-    
     return {
       success: false,
-      error: 'Something went wrong. Please try again.',
+      error: 'Failed to send message. Please email us directly at info@munk-media.com.',
     }
   }
 }
