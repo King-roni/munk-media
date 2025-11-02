@@ -50,7 +50,12 @@ export async function POST(req: Request) {
 
     // Get email addresses with fallbacks
     const to = process.env.CONTACT_TO_EMAIL || 'info@munk-media.com'
-    const from = process.env.CONTACT_FROM_EMAIL || 'Website <no-reply@munk-media.com>'
+    
+    // Smart fallback: use Resend onboarding email if domain not verified
+    const useOnboarding = process.env.RESEND_USE_ONBOARDING === '1'
+    const from = (process.env.CONTACT_FROM_EMAIL && !useOnboarding)
+      ? process.env.CONTACT_FROM_EMAIL
+      : 'Munk Media <onboarding@resend.dev>'
 
     // Compose email
     const subject = `New inquiry from ${validatedData.name} — Munk Media`
