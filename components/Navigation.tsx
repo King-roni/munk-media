@@ -79,14 +79,6 @@ export default function Navigation() {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <Link 
-            href="/contact" 
-            className="hidden md:flex items-center space-x-2 bg-mm-stone text-mm-brown px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-mm-stone focus:ring-offset-2 focus:ring-offset-mm-brown"
-          >
-            <span>Book a Call</span>
-          </Link>
-
           {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
@@ -124,13 +116,6 @@ export default function Navigation() {
                     {item.name}
                   </Link>
                 ))}
-                <Link 
-                  href="/contact" 
-                  className="w-full bg-mm-stone text-mm-brown px-6 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg text-center transition-all duration-200 mt-4" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Book a Call
-                </Link>
               </div>
             </motion.div>
           )}

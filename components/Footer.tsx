@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Instagram, Twitter, Linkedin, ArrowUp, Mail, Phone, MapPin, ArrowRight, FileText } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useMotion } from './MotionProvider'
 
 export default function Footer() {
@@ -39,9 +40,13 @@ export default function Footer() {
             className="lg:col-span-1"
           >
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-mm-brown to-mm-stone rounded-xl flex items-center justify-center">
-                <span className="text-mm-ivory font-bold text-xl">M</span>
-              </div>
+              <Image
+                src="/brand/munk-logo.svg"
+                alt="Munk Media logo"
+                width={40}
+                height={40}
+                className="h-10 w-10 object-contain"
+              />
               <span className="text-2xl font-bold">Munk Media</span>
             </div>
             <p className="text-gray-400 mb-8 leading-relaxed">
