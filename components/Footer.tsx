@@ -43,11 +43,11 @@ export default function Footer() {
               <Image
                 src="/brand/munk-logo.png"
                 alt="Munk Media logo"
-                width={40}
-                height={40}
-                className="object-contain"
+                width={48}
+                height={48}
+                className="object-contain md:w-[52px] md:h-[52px] transition-transform duration-200 hover:scale-105"
               />
-              <span className="text-2xl font-bold">Munk Media</span>
+              <span className="font-semibold tracking-tight text-lg md:text-xl">Munk Media</span>
             </div>
             <p className="text-gray-400 mb-8 leading-relaxed">
               Munk Media connects creators and brands through stories that move people, not just numbers. From influencer campaigns to authentic UGC, we build partnerships that shape culture and drive real growth.

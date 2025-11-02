@@ -11,12 +11,12 @@ export function Brand() {
       <Image
         src="/brand/munk-logo.png"
         alt="Munk Media logo"
-        width={34}
-        height={34}
+        width={48}
+        height={48}
         priority
-        className="object-contain transition-transform group-hover:scale-105"
+        className="object-contain md:w-[52px] md:h-[52px] transition-transform duration-200 group-hover:scale-105"
       />
-      <span className="text-lg md:text-xl font-semibold tracking-tight text-white">
+      <span className="font-semibold tracking-tight text-lg md:text-xl text-white">
         Munk Media
       </span>
     </Link>
