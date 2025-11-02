@@ -99,7 +99,7 @@ export default function Hero() {
       )
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-mm-ivory via-mm-stone/30 to-mm-ivory pt-30">
+    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-mm-ivory via-mm-stone/30 to-mm-ivory pt-32 sm:pt-36 md:pt-40">
       <div className="container-max relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           {/* Tagline */}
