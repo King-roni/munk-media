@@ -39,13 +39,13 @@ export default function Footer() {
             transition={transition}
             className="lg:col-span-1"
           >
-            <div className="flex items-center space-x-2 mb-6">
+            <div className="flex items-center gap-3 mb-6">
               <Image
-                src="/brand/munk-logo.svg"
+                src="/brand/munk-logo.png"
                 alt="Munk Media logo"
                 width={40}
                 height={40}
-                className="h-10 w-10 object-contain"
+                className="object-contain"
               />
               <span className="text-2xl font-bold">Munk Media</span>
             </div>
