@@ -9,12 +9,12 @@ export function Brand() {
       aria-label="Munk Media – Home"
     >
       <Image
-        src="/brand/munk-logo.svg"
+        src="/brand/munk-logo.png"
         alt="Munk Media logo"
-        width={36}
-        height={36}
+        width={34}
+        height={34}
         priority
-        className="h-7 w-7 md:h-9 md:w-9 object-contain transition-transform group-hover:scale-105"
+        className="object-contain transition-transform group-hover:scale-105"
       />
       <span className="text-lg md:text-xl font-semibold tracking-tight text-white">
         Munk Media
