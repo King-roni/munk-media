@@ -1,26 +1,48 @@
-'use server'
-
-import { contactFormSchema, type ContactFormData } from '@/lib/validations/contact'
+import { NextResponse } from 'next/server'
 import { Resend } from 'resend'
+import { contactFormSchema } from '@/lib/validations/contact'
 
-export async function submitContactForm(data: ContactFormData) {
+type Body = {
+  name: string
+  email: string
+  company?: string
+  phone?: string
+  message: string
+  website?: string
+}
+
+export async function POST(req: Request) {
   try {
-    // Validate the data
-    const validatedData = contactFormSchema.parse(data)
-
-    // Honeypot check - if website field is filled, it's a bot
-    if (validatedData.website) {
-      return { success: false, error: 'Invalid submission' }
-    }
-
-    // Check for API key
+    // Check for API key first
     const apiKey = process.env.RESEND_API_KEY
     if (!apiKey) {
       console.warn('[contact] Missing RESEND_API_KEY')
-      return { 
-        success: false, 
-        error: 'Email service not configured. Please email us directly at info@munk-media.com.'
-      }
+      return NextResponse.json(
+        { ok: false, error: 'Email service not configured' },
+        { status: 500 }
+      )
+    }
+
+    const data = (await req.json()) as Body
+
+    // Validate the data using the schema
+    const validationResult = contactFormSchema.safeParse(data)
+    
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { ok: false, error: 'Invalid form data' },
+        { status: 400 }
+      )
+    }
+
+    const validatedData = validationResult.data
+
+    // Honeypot check - if website field is filled, it's a bot
+    if (validatedData.website) {
+      return NextResponse.json(
+        { ok: false, error: 'Invalid submission' },
+        { status: 400 }
+      )
     }
 
     // Lazy-init Resend only when we have the API key
@@ -30,7 +52,7 @@ export async function submitContactForm(data: ContactFormData) {
     const to = process.env.CONTACT_TO_EMAIL || 'info@munk-media.com'
     const from = process.env.CONTACT_FROM_EMAIL || 'Website <no-reply@munk-media.com>'
 
-    // Send email using Resend
+    // Compose email
     const subject = `New inquiry from ${validatedData.name} — Munk Media`
     const html = `
       <h2>New Contact Submission</h2>
@@ -52,19 +74,13 @@ export async function submitContactForm(data: ContactFormData) {
       html,
     })
 
-    // Return success
-    return {
-      success: true,
-      message: 'Thank you! We\'ll get back to you within 24 hours.',
-    }
-  } catch (error) {
-    console.error('Contact form error:', error)
-    
-    return {
-      success: false,
-      error: 'Failed to send message. Please email us directly at info@munk-media.com.',
-    }
+    return NextResponse.json({ ok: true })
+  } catch (err) {
+    console.error('[contact] error', err)
+    return NextResponse.json(
+      { ok: false, error: 'Failed to send message' },
+      { status: 500 }
+    )
   }
 }
-
 

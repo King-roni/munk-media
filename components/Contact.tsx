@@ -94,7 +94,10 @@ export default function Contact() {
             </div>
             
             <div className="space-y-6">
-              <div className="luxury-card cursor-pointer group">
+              <a 
+                href="mailto:info@munk-media.com?subject=Project%20Inquiry%20—%20Munk%20Media&body=Hi%20Munk%20Media%2C%0A%0AMy%20project%20is..."
+                className="luxury-card cursor-pointer group block"
+              >
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-gradient-to-br from-mm-brown to-mm-stone rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Mail className="w-6 h-6 text-mm-ink" />
@@ -105,7 +108,7 @@ export default function Contact() {
                     <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">Send us an email</span>
                   </div>
                 </div>
-              </div>
+              </a>
 
               <div className="luxury-card cursor-pointer group">
                 <div className="flex items-center space-x-4">
