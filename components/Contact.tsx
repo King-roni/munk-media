@@ -95,7 +95,8 @@ export default function Contact() {
             
             <div className="space-y-6">
               <a 
-                href="mailto:info@munk-media.com?subject=Project%20Inquiry%20—%20Munk%20Media&body=Hi%20Munk%20Media%2C%0A%0AMy%20project%20is..."
+                href="mailto:info@munk-media.com"
+                rel="noopener noreferrer"
                 className="luxury-card cursor-pointer group block"
               >
                 <div className="flex items-center space-x-4">
@@ -163,7 +164,10 @@ export default function Contact() {
             {/* Error Message */}
             {formState.error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-                <p className="text-red-800">{formState.error}</p>
+                <p className="text-red-800 mb-2">{formState.error}</p>
+                <p className="text-red-700 text-sm">
+                  <a href="mailto:info@munk-media.com" className="underline hover:text-red-900">Email us directly</a> if you continue to experience issues.
+                </p>
               </div>
             )}
             
