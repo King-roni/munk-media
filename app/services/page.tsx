@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import { Users, Camera, TrendingUp, Rocket, Layers, ArrowRight, CheckCircle, Star } from 'lucide-react'
-import Link from 'next/link'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 import { useMotion } from '@/components/MotionProvider'
@@ -342,13 +341,18 @@ export default function ServicesPage() {
             transition={transition}
             className="text-center mt-12"
           >
-            <Link
-              href="/contact"
+            <a
+              href="https://calendly.com/matisse-unkel8/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Calendly booking (new tab)"
+              data-cta="calendly"
+              data-location="services"
               className="inline-flex items-center space-x-2 bg-mm-brown text-mm-ivory px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-mm-brown focus:ring-offset-2"
             >
               <span>Book a Discovery Call</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
             <p className="mt-6 text-gray-600 italic max-w-2xl mx-auto">
               From first conversation to final report, our process is built to create real impact, not empty impressions.
             </p>
@@ -369,9 +373,17 @@ export default function ServicesPage() {
             <p className="text-xl mb-8 opacity-90">
               Let's discuss how our services can drive exceptional results for your brand.
             </p>
-            <button className="bg-mm-ivory text-mm-brown px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity">
+            <a
+              href="https://calendly.com/matisse-unkel8/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Calendly booking (new tab)"
+              data-cta="calendly"
+              data-location="services"
+              className="inline-block bg-mm-ivory text-mm-brown px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity"
+            >
               Book a Discovery Call
-            </button>
+            </a>
           </motion.div>
         </div>
       </section>
