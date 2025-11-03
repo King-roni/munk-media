@@ -3,41 +3,12 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, Star, ArrowRight, CheckCircle } from 'lucide-react'
 import { useMotion } from './MotionProvider'
-import { useState, useTransition } from 'react'
-import { submitContactForm } from '@/app/actions/contact'
+import { useFormState } from 'react-dom'
+import { submitContact } from '@/app/actions/contact'
 
 export default function Contact() {
   const { safeMode } = useMotion()
-  const [isPending, startTransition] = useTransition()
-  const [formState, setFormState] = useState<{
-    success?: boolean
-    error?: string
-    message?: string
-  }>({})
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      company: formData.get('company') as string,
-      phone: formData.get('phone') as string,
-      message: formData.get('message') as string,
-      website: formData.get('website') as string, // honeypot
-    }
-
-    startTransition(async () => {
-      const result = await submitContactForm(data)
-      setFormState(result)
-      
-      if (result.success) {
-        // Reset form on success
-        e.currentTarget.reset()
-      }
-    })
-  }
+  const [formState, formAction] = useFormState(submitContact, null)
 
   // Safe mode variants - no animations, immediate visibility
   const safeVariants = {
@@ -152,17 +123,17 @@ export default function Contact() {
             </div>
 
             {/* Success Message */}
-            {formState.success && (
+            {formState?.ok && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start space-x-3">
                 <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-green-800 font-medium">{formState.message}</p>
+                  <p className="text-green-800 font-medium">Thank you for reaching out! We'll get back to you within 24 hours.</p>
                 </div>
               </div>
             )}
 
             {/* Error Message */}
-            {formState.error && (
+            {formState?.error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
                 <p className="text-red-800 mb-2">{formState.error}</p>
                 <p className="text-red-700 text-sm">
@@ -171,19 +142,21 @@ export default function Contact() {
               </div>
             )}
             
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form action={formAction} className="space-y-6">
               {/* Honeypot field - hidden from users */}
               <input
                 type="text"
-                name="website"
+                name="company"
                 className="hidden"
                 tabIndex={-1}
                 autoComplete="off"
               />
+              <input type="hidden" name="page" value="home" />
+              
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-mm-ink mb-2">Full Name *</label>
-                  <input type="text" id="name" name="name" required className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all" placeholder="Your full name" />
+                  <label htmlFor="name" className="block text-sm font-medium text-mm-ink mb-2">Full Name</label>
+                  <input type="text" id="name" name="name" className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all" placeholder="Your full name" />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-mm-ink mb-2">Email Address *</label>
@@ -191,37 +164,18 @@ export default function Contact() {
                 </div>
               </div>
               
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="company" className="block text-sm font-medium text-mm-ink mb-2">Company Name</label>
-                  <input type="text" id="company" name="company" className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all" placeholder="Your company" />
-                </div>
-                <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-mm-ink mb-2">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all" placeholder="+31 (06) 15548053" />
-                </div>
-              </div>
-              
-              {/* Updated all contact forms across site:
-                   - Removed 'Project Budget' field
-                   - Unified brand copy
-                   - Streamlined layout and improved storytelling focus */}
-              
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-mm-ink mb-2">Project Details *</label>
+                <label htmlFor="message" className="block text-sm font-medium text-mm-ink mb-2">Message *</label>
                 <textarea id="message" name="message" required rows={5} className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-mm-brown focus:border-transparent transition-all resize-none" placeholder="Tell us about your project goals, target audience, and any specific requirements..."></textarea>
               </div>
               
-              <motion.button
+              <button
                 type="submit"
-                disabled={isPending}
-                whileHover={safeMode ? {} : { scale: 1.02 }}
-                whileTap={safeMode ? {} : { scale: 0.98 }}
                 className="w-full btn-luxury flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>{isPending ? 'Sending...' : 'Send Message'}</span>
-                {!isPending && <ArrowRight className="w-4 h-4" />}
-              </motion.button>
+                <span>Send Message</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </form>
           </motion.div>
         </div>
