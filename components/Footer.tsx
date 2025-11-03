@@ -5,6 +5,7 @@ import { Instagram, Twitter, Linkedin, ArrowUp, Mail, Phone, MapPin, ArrowRight,
 import Link from 'next/link'
 import Image from 'next/image'
 import { useMotion } from './MotionProvider'
+import { SOCIAL_LINKS } from '@/lib/socials'
 
 export default function Footer() {
   const { safeMode } = useMotion()
@@ -53,16 +54,48 @@ export default function Footer() {
               Munk Media connects creators and brands through stories that move people, not just numbers. From influencer campaigns to authentic UGC, we build partnerships that shape culture and drive real growth.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-pink-500" aria-label="Instagram">
+              <a 
+                href={SOCIAL_LINKS.instagram} 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open Instagram (new tab)"
+                data-cta="social"
+                data-network="instagram"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-pink-500 focus:outline-none focus:ring-2 focus:ring-mm-brown focus:ring-offset-2 focus:ring-offset-mm-ink"
+              >
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-blue-400" aria-label="Twitter">
+              <a 
+                href={SOCIAL_LINKS.x} 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open X (new tab)"
+                data-cta="social"
+                data-network="x"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-blue-400 focus:outline-none focus:ring-2 focus:ring-mm-brown focus:ring-offset-2 focus:ring-offset-mm-ink"
+              >
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-blue-600" aria-label="LinkedIn">
+              <a 
+                href={SOCIAL_LINKS.linkedin} 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open LinkedIn (new tab)"
+                data-cta="social"
+                data-network="linkedin"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-mm-brown focus:ring-offset-2 focus:ring-offset-mm-ink"
+              >
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-black" aria-label="TikTok">
+              <a 
+                href={SOCIAL_LINKS.tiktok} 
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Open TikTok (new tab)"
+                data-cta="social"
+                data-network="tiktok"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 transition-colors hover:text-black focus:outline-none focus:ring-2 focus:ring-mm-brown focus:ring-offset-2 focus:ring-offset-mm-ink"
+              >
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
                 </svg>
