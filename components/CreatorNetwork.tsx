@@ -3,40 +3,12 @@
 import { motion } from 'framer-motion'
 import { Users, ArrowRight, CheckCircle } from 'lucide-react'
 import { useMotion } from './MotionProvider'
-import { useState, useTransition } from 'react'
+import { useFormState } from 'react-dom'
+import { submitCreatorApplication } from '@/app/actions/creator-application'
 
 export default function CreatorNetwork() {
   const { safeMode } = useMotion()
-  const [isPending, startTransition] = useTransition()
-  const [formState, setFormState] = useState<{
-    success?: boolean
-    error?: string
-    message?: string
-  }>({})
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const formData = new FormData(e.currentTarget)
-    
-    const data = {
-      name: formData.get('name') as string,
-      email: formData.get('email') as string,
-      platform: formData.get('platform') as string,
-      followerCount: formData.get('followerCount') as string,
-      niche: formData.get('niche') as string,
-      message: formData.get('message') as string,
-    }
-
-    startTransition(async () => {
-      // For now, log to console. Can be connected to API later.
-      console.log('Creator Application:', data)
-      setFormState({
-        success: true,
-        message: 'Thank you! We\'ll review your application and get back to you soon.'
-      })
-      e.currentTarget.reset()
-    })
-  }
+  const [formState, formAction] = useFormState(submitCreatorApplication, null)
 
   // Safe mode variants - no animations, immediate visibility
   const safeVariants = {
@@ -90,23 +62,34 @@ export default function CreatorNetwork() {
             <h3 className="text-2xl font-bold mb-6 text-mm-ink">Creator Application Form</h3>
             
             {/* Success Message */}
-            {formState.success && (
+            {formState?.ok && (
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl flex items-start space-x-3">
                 <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-green-800 font-medium">{formState.message}</p>
+                  <p className="text-green-800 font-medium">Thank you! We'll review your application and get back to you soon.</p>
                 </div>
               </div>
             )}
 
             {/* Error Message */}
-            {formState.error && (
+            {formState?.error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl">
-                <p className="text-red-800">{formState.error}</p>
+                <p className="text-red-800 mb-2">{formState.error}</p>
+                <p className="text-red-700 text-sm">
+                  <a href="mailto:info@munk-media.com" className="underline hover:text-red-900">Email us directly</a> if you continue to experience issues.
+                </p>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form action={formAction} className="space-y-6">
+              {/* Honeypot field - hidden from users */}
+              <input
+                type="text"
+                name="company"
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
               <div>
                 <label htmlFor="creator-name" className="block text-sm font-medium text-mm-ink mb-2">Name *</label>
                 <input 
@@ -182,16 +165,13 @@ export default function CreatorNetwork() {
                 ></textarea>
               </div>
 
-              <motion.button
+              <button
                 type="submit"
-                disabled={isPending}
-                whileHover={safeMode ? {} : { scale: 1.02 }}
-                whileTap={safeMode ? {} : { scale: 0.98 }}
                 className="w-full btn-luxury flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <span>{isPending ? 'Submitting...' : 'Submit Application'}</span>
-                {!isPending && <ArrowRight className="w-4 h-4" />}
-              </motion.button>
+                <span>Submit Application</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
             </form>
 
             <p className="mt-6 text-sm text-gray-600 text-center">

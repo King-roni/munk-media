@@ -1,75 +1,55 @@
-'use server'
+"use server";
 
-import { contactFormSchema, type ContactFormData } from '@/lib/validations/contact'
-import { Resend } from 'resend'
+import { z } from "zod";
+import { sendEmail } from "@/lib/email";
+import { contactHtml, contactText, ContactData } from "@/emails/templates";
 
-export async function submitContactForm(data: ContactFormData) {
+const ContactSchema = z.object({
+  name: z.string().trim().optional(),
+  email: z.string().email(),
+  message: z.string().trim().min(10, "Please enter at least 10 characters."),
+  page: z.enum(["home", "contact"]),
+  company: z.string().max(0).optional().default(""), // honeypot must remain empty
+});
+
+export async function submitContact(
+  _prevState: unknown,
+  formData: FormData
+): Promise<{ ok: boolean; error?: string }> {
   try {
-    // Validate the data
-    const validatedData = contactFormSchema.parse(data)
+    const payload = {
+      name: formData.get("name")?.toString(),
+      email: formData.get("email")?.toString() || "",
+      message: formData.get("message")?.toString() || "",
+      page: (formData.get("page")?.toString() || "home") as "home" | "contact",
+      company: formData.get("company")?.toString() || "",
+    };
 
-    // Honeypot check - if website field is filled, it's a bot
-    if (validatedData.website) {
-      return { success: false, error: 'Invalid submission' }
-    }
+    const parsed = ContactSchema.safeParse(payload);
+    if (!parsed.success) return { ok: false, error: "Invalid form submission." };
+    if (parsed.data.company !== "") return { ok: false, error: "Invalid form submission." };
 
-    // Check for API key
-    const apiKey = process.env.RESEND_API_KEY
-    if (!apiKey) {
-      console.warn('[contact] Missing RESEND_API_KEY')
-      return { 
-        success: false, 
-        error: 'Email service not configured. Please email us directly at info@munk-media.com.'
-      }
-    }
+    const data = parsed.data as ContactData;
 
-    // Lazy-init Resend only when we have the API key
-    const resend = new Resend(apiKey)
+    console.log("[forms] sending", { 
+      subject: `New Message from ${data.name || "Website Visitor"}`, 
+      replyTo: data.email 
+    });
 
-    // Get email addresses with fallbacks
-    const to = process.env.CONTACT_TO_EMAIL || 'info@munk-media.com'
-    
-    // Smart fallback: use Resend onboarding email if domain not verified
-    const useOnboarding = process.env.RESEND_USE_ONBOARDING === '1'
-    const from = (process.env.CONTACT_FROM_EMAIL && !useOnboarding)
-      ? process.env.CONTACT_FROM_EMAIL
-      : 'Munk Media <onboarding@resend.dev>'
+    await sendEmail({
+      subject: `New Message from ${data.name || "Website Visitor"}`,
+      html: contactHtml(data),
+      text: contactText(data),
+      replyTo: data.email,
+    });
 
-    // Send email using Resend
-    const subject = `New inquiry from ${validatedData.name} — Munk Media`
-    const html = `
-      <h2>New Contact Submission</h2>
-      <p><strong>Name:</strong> ${validatedData.name}</p>
-      <p><strong>Email:</strong> ${validatedData.email}</p>
-      <p><strong>Company:</strong> ${validatedData.company || '-'}</p>
-      <p><strong>Phone:</strong> ${validatedData.phone || '-'}</p>
-      <p><strong>Project Details:</strong></p>
-      <pre style="white-space:pre-wrap;font-family:Inter,system-ui,Arial;background:#f5f5f5;padding:15px;border-radius:8px;">${validatedData.message}</pre>
-      <hr />
-      <small>Sent from munk-media.com</small>
-    `
-
-    await resend.emails.send({
-      from,
-      to,
-      replyTo: validatedData.email,
-      subject,
-      html,
-    })
-
-    // Return success
+    return { ok: true };
+  } catch (e) {
+    console.error("[forms] error:", e);
     return {
-      success: true,
-      message: 'Thank you! We\'ll get back to you within 24 hours.',
-    }
-  } catch (error) {
-    console.error('Contact form error:', error)
-    
-    return {
-      success: false,
-      error: 'Failed to send message. Please email us directly at info@munk-media.com.',
-    }
+      ok: false,
+      error:
+        "Something went wrong. Please try again or email us at info@munk-media.com.",
+    };
   }
 }
-
-
