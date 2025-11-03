@@ -31,6 +31,11 @@ export async function submitContact(
 
     const data = parsed.data as ContactData;
 
+    console.log("[forms] sending", { 
+      subject: `New Message from ${data.name || "Website Visitor"}`, 
+      replyTo: data.email 
+    });
+
     await sendEmail({
       subject: `New Message from ${data.name || "Website Visitor"}`,
       html: contactHtml(data),
@@ -39,7 +44,8 @@ export async function submitContact(
     });
 
     return { ok: true };
-  } catch (_e) {
+  } catch (e) {
+    console.error("[forms] error:", e);
     return {
       ok: false,
       error:

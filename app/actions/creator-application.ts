@@ -37,6 +37,11 @@ export async function submitCreatorApplication(
     const data = parsed.data as Record<string, string | undefined>;
     const senderEmail = data.email || "no-reply@munk-media.com";
 
+    console.log("[forms] sending", { 
+      subject: `New Creator Application – ${data.creatorName || "Unknown"}`, 
+      replyTo: senderEmail 
+    });
+
     await sendEmail({
       subject: `New Creator Application – ${data.creatorName || "Unknown"}`,
       html: creatorHtml(data),
@@ -45,7 +50,8 @@ export async function submitCreatorApplication(
     });
 
     return { ok: true };
-  } catch (_e) {
+  } catch (e) {
+    console.error("[forms] error:", e);
     return {
       ok: false,
       error:
