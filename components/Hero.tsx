@@ -1,11 +1,9 @@
 'use client'
 
-import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Star } from 'lucide-react'
 import { useMotion } from './MotionProvider'
 import SplitText, { SplitTextGradient } from './SplitText'
-import MagneticButton, { MagneticLink } from './MagneticButton'
 import { springConfigs } from '@/lib/motionConfig'
 
 export default function Hero() {
@@ -49,8 +47,13 @@ export default function Hero() {
       const CTAButtons = () => (
         <div className="flex justify-center mb-12">
           {safeMode ? (
-            <Link 
-              href="/contact"
+            <a 
+              href="https://calendly.com/matisse-unkel8/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Calendly booking (new tab)"
+              data-cta="calendly"
+              data-location="home"
               className="inline-flex items-center gap-2 bg-mm-brown text-mm-ivory px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-mm-brown focus:ring-offset-2"
               style={{
                 boxShadow: '0 4px 14px 0 rgba(82, 52, 31, 0.2)',
@@ -64,15 +67,29 @@ export default function Hero() {
             >
               <span>Book a Call</span>
               <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-            </Link>
+            </a>
           ) : (
-            <MagneticLink 
-              href="/contact"
+            <a 
+              href="https://calendly.com/matisse-unkel8/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Calendly booking (new tab)"
+              data-cta="calendly"
+              data-location="home"
               className="inline-flex items-center gap-2 bg-mm-brown text-mm-ivory px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-mm-brown focus:ring-offset-2"
+              style={{
+                boxShadow: '0 4px 14px 0 rgba(82, 52, 31, 0.2)',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.boxShadow = '0 8px 24px 0 rgba(82, 52, 31, 0.3)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.boxShadow = '0 4px 14px 0 rgba(82, 52, 31, 0.2)';
+              }}
             >
               <span>Book a Call</span>
               <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform flex-shrink-0" />
-            </MagneticLink>
+            </a>
           )}
         </div>
       )

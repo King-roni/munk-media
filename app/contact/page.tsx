@@ -94,7 +94,15 @@ export default function ContactPage() {
                   </div>
                 </a>
                 
-                <div className="luxury-card cursor-pointer group">
+                <a 
+                  href="https://calendly.com/matisse-unkel8/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Calendly booking (new tab)"
+                  data-cta="calendly"
+                  data-location="contact"
+                  className="luxury-card cursor-pointer group block"
+                >
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-mm-brown to-mm-stone rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
                       <Phone className="w-6 h-6 text-mm-ivory" />
@@ -105,7 +113,7 @@ export default function ContactPage() {
                       <span className="text-mm-brown text-sm font-medium group-hover:text-mm-ink transition-colors">Schedule a call</span>
                     </div>
                   </div>
-                </div>
+                </a>
                 
                 <div className="luxury-card cursor-pointer group">
                   <div className="flex items-center space-x-4">
