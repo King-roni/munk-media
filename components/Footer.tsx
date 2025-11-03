@@ -141,7 +141,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-mm-brown flex-shrink-0" />
-                <span className="text-gray-400">matisse@munk-media.com</span>
+                <span className="text-gray-400">info@munk-media.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-mm-brown flex-shrink-0" />
